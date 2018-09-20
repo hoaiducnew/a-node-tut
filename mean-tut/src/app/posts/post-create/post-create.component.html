@@ -5,7 +5,7 @@
              name="title" ngModel
              required minlength="3"
              placeholder="Title"
-             [ngModel]="post.title"
+             [ngModel]="post?.title"
              #title="ngModel">
       <mat-error *ngIf="title.invalid">Please enter a post title.</mat-error>
     </mat-form-field>
@@ -14,7 +14,7 @@
                 name="content" ngModel
                 required
                 placeholder="Content"
-                [ngModel]="post.content"
+                [ngModel]="post?.content"
                 #content="ngModel">
       </textarea>
       <mat-error *ngIf="content.invalid">Please enter a post content.</mat-error>
