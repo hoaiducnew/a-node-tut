@@ -12,8 +12,7 @@ export class PostsService {
   constructor(private httpClient: HttpClient) {}
 
   getPosts() {
-    this.httpClient
-      .get<{message: string, posts: Post[]}>('http://localhost:3000/api/posts')
+    this.httpClient.get<{ message: string, posts: any }>('http://localhost:3000/api/posts')
       .pipe(map((postData) => {
         return postData.posts.map(post => {
           return {
@@ -40,6 +39,13 @@ export class PostsService {
         console.log(responseData.message);
         this.posts.push(post);
         this.postsUpdated.next([...this.posts]);
+      });
+  }
+
+  deletePost(postId: string) {
+    this.httpClient.delete('http://localhost:3000/api/posts/' + postId)
+      .subscribe(() => {
+        console.log('Deleted!');
       });
   }
 }

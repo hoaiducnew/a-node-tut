@@ -46,8 +46,11 @@ app.get("/api/posts", (req, res, next) => {
     });
 });
 
-app.use((req, res, next) => {
-  res.send('Hello from express!');
+app.delete("/api/posts/:id", (req, res, next) => {
+  Post.deleteOne({ _id: req.params.id }).then(result => {
+    console.log(result);
+    res.status(200).json({ message: 'Post deleted!'});
+  })
 });
 
 module.exports = app;
